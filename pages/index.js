@@ -5,6 +5,9 @@ import { useState } from 'react';
 import NavBar from '../components/navbar';
 import Hero from '../components/hero';
 import Categ from '../components/categories';
+import Trending from '../components/trending';
+
+
 
 export default function Home() {
   const [navbar, setNavbar] = useState(false);
@@ -22,6 +25,7 @@ export default function Home() {
 
       <main >
         <Hero/>
+        <Trending/>
       <Categ/>
       </main>
 
