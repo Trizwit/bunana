@@ -8,7 +8,7 @@ function Trending(){
         </div>
 
         {/* col start */}
-        <div className="flex justify-center mx-auto grid grid-cols-3 gap-32 y-16">
+        <div className="flex justify-center mx-auto grid grid-cols-3 gap- y-16">
 
         <div className="flex justify-center flex-col  h-72 bg-transparent border-2    shadow border-[#2EADC5] rounded-[30px]  ">
         <div className="grid grid-row-2 gap-3 flex">
