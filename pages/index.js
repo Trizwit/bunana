@@ -6,7 +6,8 @@ import NavBar from '../components/navbar';
 import Hero from '../components/hero';
 import Categ from '../components/categories';
 import Trending from '../components/trending';
-
+import Carousel from '../components/carousel';
+import Footer from '../components/footer';
 
 
 export default function Home() {
@@ -26,10 +27,18 @@ export default function Home() {
       <main >
         <Hero/>
         <Trending/>
+        <Carousel/>
       <Categ/>
+      
+
+
       </main>
 
-      <footer className={styles.footer}>
+
+
+
+      <Footer/>
+      {/* <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
@@ -40,7 +49,7 @@ export default function Home() {
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
-      </footer>
+      </footer> */}
     </div>
   )
 }
