@@ -3,11 +3,13 @@
  function Carousel() {
 
    
-    return <div className="flex justify-center py-16 bg-[#2EADC5]/10">
-     <div className="inline-flex bg-red-200 w-auto h-10">
-      <h1 className=""> Hello</h1>
-     </div>
-<div className="relative z-30 scale-75 rounded-lg shadow-md shadow-[#2EADC5]/50 bg-[#152022] max-w-sm md:w-1/2 max-h-1/6">
+    return <div className="flex justify-center py-4 bg-gradient-to-tr from-[#2EADC500] to-[#2EADC558]/40">
+     
+      
+      <h1 className="block"> Hello</h1>  
+     
+     
+<div className="relative z-30 scale-75 rounded-lg shadow-md shadow-[#2EADC5]/50 bg-[#152022] max-w-sm md:w-1/2 max-h-1/6 ">
       <a href="#!">
         <div className= "relative">
          

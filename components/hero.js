@@ -19,10 +19,10 @@ function Hero(){
        </div>
 
        
-  <div className="container  px-32 py-5 mx-auto flex flex-wrap">
+  <div className="container  px-32 py-5 mx-auto flex flex-wrap ">
     <div className="flex flex-wrap -m-1">
       <div className="p-2 lg:w-full md:w-full">
-        <div className="flex border-2 rounded-lg border-[#2EADC5] border-opacity-50 px-24 py-16 sm:flex-row flex-col">
+        <div className="flex border-2 rounded-lg  bg-gradient-to-tr from-[#2EADC54D] to-[#2EADC500]  border-[#2EADC5] border-opacity-50 px-24 py-16 sm:flex-row flex-col">
         <div className=" grid grid-cols-3 gap-6 divide-x divide-[#2EADC5]">
          <div className="flex justify-center flex-col w-52 ">
           <h2 className="flex  justify-center text-2xl text-[#f8fafc] font-semibold">Artwork </h2>

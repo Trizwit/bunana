@@ -1,15 +1,16 @@
 import { useState } from 'react';
+import Link from 'next/link';
 
 
 function NavBar(){
     const [navbar, setNavbar] = useState(false);
-    return <nav className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center backdrop-blur-sm md:backdrop-blur-lg  sticky top-0 z-50">
+    return <nav className="container  mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center backdrop-blur-sm md:backdrop-blur-lg ">
         <div className="flex justify-start  lg:max-w-full md:items-center ">
           <div>
             <div className="flex items-center justify-start px-8 py-3 md:py-5 md:block">
-              <a href="#">
+              <Link href="/">
                 <h2 className="text-2xl text-[#2BA3BA] font-bold">Trizwit.</h2>
-              </a>
+              </Link>
               <div className="md:hidden">
                 <button
                   className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -57,7 +58,7 @@ function NavBar(){
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-16 md:space-y-0">
                 <li className="text-white hover:text-[#2BA3BA]">
                  
-                    <a href='#'>Explore</a>
+                    <Link href='explore'>Explore</Link>
                   
                 </li>
                 <li className="text-white hover:text-[#2BA3BA]">
@@ -116,6 +117,7 @@ function NavBar(){
 
         </div>
       </nav>
+      
 }
 
 export default NavBar;
