@@ -10,6 +10,7 @@ import Carousel from '../components/carousel';
 import Footer from '../components/footer';
 import Explorehero from '../components/explorehero';
 import Link from 'next/link';
+import Exploreall from '../components/exploreall';
 
 
 export default function Home() {
@@ -28,6 +29,8 @@ export default function Home() {
 
       <main >
         <Explorehero/>
+        <Exploreall/>
+
       
 
 
