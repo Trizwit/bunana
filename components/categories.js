@@ -1,5 +1,5 @@
 function Categ(){
-    return <section className="text-gray-600 body-font ">
+    return <section className="text-gray-600 body-font pb-12 ">
           <div className="container  px-32 py-5 mx-auto flex flex-wrap">
     <div className="flex flex-wrap -m-1">
       <div className="p-2 lg:w-full md:w-full">

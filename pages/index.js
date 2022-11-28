@@ -8,6 +8,7 @@ import Categ from '../components/categories';
 import Trending from '../components/trending';
 import Carousel from '../components/carousel';
 import Footer from '../components/footer';
+import Soicials from '../components/socials';
 import Link from 'next/link';
 
 
@@ -36,8 +37,8 @@ export default function Home() {
       </main>
 
 
-
-
+      <Soicials/>
+      
       <Footer/>
       {/* <footer className={styles.footer}>
         <a

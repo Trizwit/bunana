@@ -7,10 +7,13 @@ function NavBar(){
     return <nav className="container  mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center backdrop-blur-sm md:backdrop-blur-lg ">
         <div className="flex justify-start  lg:max-w-full md:items-center ">
           <div>
-            <div className="flex items-center justify-start px-8 py-3 md:py-5 md:block">
+            <div className="flex items-center justify-between px-16 py-3 md:py-5 md:block ">
+              <div className='inline-flex'>
+              <img src="Logo.svg" alt="" class="self-center  rounded-full mx-2" />
               <Link href="/">
-                <h2 className="text-2xl text-[#2BA3BA] font-bold">Trizwit.</h2>
+               <h2 className="text-2xl text-[#2BA3BA] font-bold">Trizwit.</h2>
               </Link>
+              </div>
               <div className="md:hidden">
                 <button
                   className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
