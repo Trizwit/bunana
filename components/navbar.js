@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
 import Link from 'next/link';
+import Exploreall from './exploreall';
+import { useRouter } from 'next/router';
 
 
 function NavBar(){
     const [navbar, setNavbar] = useState(false);
-    return <nav className="container  mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center backdrop-blur-sm md:backdrop-blur-lg ">
+    const router = useRouter();
+    
+    return <nav className="container sticky top-o z-50  mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center backdrop-blur-sm md:backdrop-blur-lg ">
         <div className="flex justify-start  lg:max-w-full md:items-center ">
           <div>
             <div className="flex items-center justify-between px-16 py-3 md:py-5 md:block ">
@@ -59,9 +63,10 @@ function NavBar(){
               }`}
             >
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-16 md:space-y-0">
-                <li className="text-white hover:text-[#2BA3BA]">
+
+                <li className="text-white hover:text-[#2BA3BA] ">
                  
-                    <Link href='explore'>Explore</Link>
+                    <Link href='explore' >Explore</Link>
                   
                 </li>
                 <li className="text-white hover:text-[#2BA3BA]">
@@ -76,7 +81,7 @@ function NavBar(){
                 </li>
                 <li className="text-white hover:text-[#2BA3BA]">
                   
-                    <a href='#'>Create</a>
+                    <Link href='create'>Create</Link>
                 
                 </li>
               </ul>
