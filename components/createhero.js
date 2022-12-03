@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 function CreatHero(){
+    const [file,setFile]= useState(null);
+    const [caption, useCaption]= useState("");
+    const [category, useCategory]= useState("");
+    
+
     return <section className="text-gray-600 body-font">
     <div className="container mx-auto flex flex-col px-5 py-24 justify-start items-center">
     <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-[#2EADC5]">Create New Item</h1>
@@ -38,10 +45,11 @@ function CreatHero(){
         <p className="text-white ">The description will be included on the item's detail page underneath its image. </p>
         <select id="col" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-[#2EADC5] dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white ">
           <option selected>Choose a collection</option>
-          <option value="ART">Art</option>
-          <option value="SPT">Sport</option>
-           <option value="DOM">Domain</option>
-          <option value="MUS">Music</option>
+          <option value="ART">Comedy</option>
+          <option value="SPT">Dance</option>
+           <option value="DOM">Music</option>
+           <option value="MUS">Lip Sync</option>
+          
           </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
