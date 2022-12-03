@@ -1,12 +1,58 @@
-import { use, useState } from 'react';
+import { use, useState ,useEffect, useRef,} from 'react';
 import Link from 'next/link';
 import Exploreall from './exploreall';
 import { useRouter } from 'next/router';
+import Web3Modal from "web3modal";
+import { providers, Contract } from "ethers";
 
 
-function NavBar(){
+export default function NavBar(){
+
+    const [walletConnected, setWalletConnected] = useState(false);
     const [navbar, setNavbar] = useState(false);
     const router = useRouter();
+    const web3ModalRef = useRef();
+
+    const getProviderOrSigner = async (needSigner = false) => {
+      const provider = await web3ModalRef.current.connect();
+      const web3Provider = new providers.Web3Provider(provider);
+    
+      const { chainId } = await web3Provider.getNetwork();
+      if (chainId !== 5) {
+        window.alert("Change the network to Goerli");
+        throw new Error("Change network to Goerli");
+      }
+          
+      if (needSigner) {
+        const signer = web3Provider.getSigner();
+        return signer;
+      }
+      return web3Provider;
+    };
+    
+    const connectWallet = async () => {
+      window.alert("Press ok to Connect Wallet");
+      if(walletConnected==true){
+        alert("Wallet already connected");
+      }
+      try {
+        await getProviderOrSigner();
+        setWalletConnected(true);
+    
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    useEffect(() => {
+      if (!walletConnected) {
+        web3ModalRef.current = new Web3Modal({
+          network: "goerli",
+          providerOptions: {},
+          disableInjectedProvider: false,
+        });
+      }
+    }, [walletConnected]);
     
     return <nav className="container sticky top-o z-50  mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center backdrop-blur-sm md:backdrop-blur-lg ">
         <div className="flex justify-start  lg:max-w-full md:items-center ">
@@ -15,7 +61,7 @@ function NavBar(){
               <div className='inline-flex'>
               <img src="Logo.svg" alt="" class="self-center  rounded-full mx-2" />
               <Link href="/">
-               <h2 className="text-2xl text-[#2BA3BA] font-bold">Trizwit.</h2>
+               <h2 className="text-2xl text-[#2BA3BA] font-bold">BunanA.</h2>
               </Link>
               </div>
               <div className="md:hidden">
@@ -104,7 +150,7 @@ function NavBar(){
       </div>
       <div className="basis-1/2  ml-2 h-12   pt-3 px-1 ">
       
-      <button className=" bg-[#2BA3BA] h-8 px-2 pb-1 text-white rounded-[6px] hover:bg-transparent hover:text-[#2BA3BA] hover:shadow-xl">
+      <button className=" bg-[#2BA3BA] h-8 px-2 pb-1 text-white rounded-[6px] hover:bg-transparent hover:text-[#2BA3BA] hover:shadow-xl" onClick={connectWallet}>
         Connect Wallet
        </button>
        
@@ -125,7 +171,7 @@ function NavBar(){
 
         </div>
       </nav>
-      
-}
 
-export default NavBar;
+
+
+}

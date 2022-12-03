@@ -19,7 +19,7 @@ function Trending(){
           {/* <h2 className="flex  justify-center text-2xl text-[#f8fafc] font-semibold">Artwork </h2> */}
           </div>
           <div className="bg-transparent justify-center flex-row mb-16">
-             <p className="flex justify-center text-[#FFFFFF] text-xl text-center font-normal mx-auto">Connect your wallet<br/> with Trizwit</p>
+             <p className="flex justify-center text-[#FFFFFF] text-xl text-center font-normal mx-auto">Connect your wallet<br/> with BunanA</p>
              </div>
              </div>
              <a></a>
@@ -34,7 +34,7 @@ function Trending(){
           {/* <h2 className="flex  justify-center text-2xl text-[#f8fafc] font-semibold">Artwork </h2> */}
           </div>
           <div className="bg-transparent justify-center flex-row mb-16">
-             <p className="flex justify-center text-[#FFFFFF] text-xl text-center font-normal mx-auto">Explore various<br/>NFTs published</p>
+             <p className="flex justify-center text-[#FFFFFF] text-xl text-center font-normal mx-auto">Own NFTs of <br/>your fav creators</p>
              </div>
              </div>
              <a></a>
@@ -50,7 +50,7 @@ function Trending(){
           {/* <h2 className="flex  justify-center text-2xl text-[#f8fafc] font-semibold">Artwork </h2> */}
           </div>
           <div className="bg-transparent justify-center flex-row mb-16">
-             <p className="flex justify-center text-[#FFFFFF] text-xl text-center font-normal mx-auto">Buy/Sell NFTs based<br/>hassle free!</p>
+             <p className="flex justify-center text-[#FFFFFF] text-xl text-center font-normal mx-auto">Watch contents<br/>hassle free!</p>
              </div>
              </div>
              <a></a>
@@ -63,6 +63,8 @@ function Trending(){
             </div>
             </div>
          </div>
+         <h1 className="font-bold text-3xl text-[#FFFFFF] pt-4">
+            Featured Stars for you         </h1>
     </section>
 }
 

@@ -4,7 +4,7 @@ function Categ(){
     <div className="flex flex-wrap -m-1">
       <div className="p-2 lg:w-full md:w-full">
         <div className="py-12">
-            <h1 className="font-bold text-3xl text-[#FFFFFF]">Explore by Category</h1>
+            <h1 className="font-bold text-3xl text-[#FFFFFF]">Trending Right Now</h1>
         </div>
         <div className=" grid grid-cols-3 gap-14">
             {/* card1 start */}

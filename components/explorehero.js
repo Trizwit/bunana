@@ -3,7 +3,7 @@ function Explorehero(){
 
     <div className="grid grid-row-2 gap-4  bg-[#152022] sticky">
      <div>   
-    <h1 className="mx-8 text-white font-bold text-2xl">Explore Collections</h1>
+    <h1 className="mx-8 text-white font-bold text-2xl">Explore @rvs_bunana Collections</h1>
     </div>
     <div className="mx-8 mt-12  h-24 rounded-t-[12px] bg-gradient-to-b from-[#2EADC5] to-[#2EADC500]">
         {/* category */}
