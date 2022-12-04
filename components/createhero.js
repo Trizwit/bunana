@@ -1,5 +1,9 @@
-import { useState } from "react";
 import { Web3Storage } from "web3.storage";
+import Router from "next/router";
+import Web3Modal from "web3modal";
+import { providers, Contract, utils } from "ethers";
+import { useEffect, useRef, useState } from "react";
+import { CONTRACT_PARENT_ADDRESS, abiContract } from "../constants";
 
 function CreateHero() {
   const [file, setFile] = useState();
@@ -7,6 +11,30 @@ function CreateHero() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("MUS");
   const [supply, setSupply] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const web3ModalRef = useRef();
+
+  const getProviderOrSigner = async (needSigner = false) => {
+    web3ModalRef.current = new Web3Modal({
+      network: "goerli",
+      providerOptions: {},
+      disableInjectedProvider: false,
+    });
+    const provider = await web3ModalRef.current.connect();
+    const web3Provider = new providers.Web3Provider(provider);
+
+    const { chainId } = await web3Provider.getNetwork();
+    if (chainId !== 5) {
+      window.alert("Change the network to Goerli");
+      throw new Error("Change network to Goerli");
+    }
+
+    if (needSigner) {
+      const signer = web3Provider.getSigner();
+      return signer;
+    }
+    return web3Provider;
+  };
 
   const onCategoryChange = (event) => {
     const { value } = event.target.value;
@@ -22,6 +50,8 @@ function CreateHero() {
   };
   const onFileChange = (event) => {
     const value = document.getElementById("formFile");
+    // const preview = document.getElementById("imagePreview");
+    // preview.src = URL.createObjectURL(value.files);
     setFile(value.files);
   };
   const onSupplyChange = (event) => {
@@ -36,18 +66,38 @@ function CreateHero() {
     });
     console.log(files);
     const cid = await client.put(files);
-    console.log("stored files with cid:", cid);
     return cid;
   }
 
   async function createBunana(file) {
     const contentId = await storeFiles(file);
+    console.log("cid:", contentId);
+    const signer = await getProviderOrSigner(true);
+
+    const bunanaContract = new Contract(
+      CONTRACT_PARENT_ADDRESS,
+      abiContract,
+      signer
+    );
+    // const symbol = name.slice(0, 2);
+    const symbol = "MOD";
+    setLoading(true);
+    const tx = await bunanaContract.createcollection(
+      "https://trizwit.com",
+      "MODIJI",
+      symbol,
+      contentId
+    );
+    setLoading(false);
+
+    window.alert("Content posted successfully");
+    Router.push("explore");
   }
 
   return (
     <section className="text-gray-600 body-font">
       <div className="container mx-auto flex flex-col px-5 py-24 justify-start items-center">
-        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-[#2EADC5]">
+        <h1 className="title-font sm:text-4xl text-3xl mb-16 font-medium text-[#2EADC5]">
           Create New Item
         </h1>
 
@@ -59,37 +109,42 @@ function CreateHero() {
               createBunana(file);
             }}
           >
-            <label
-              htmlFor="formFile"
-              className="form-label inline-block mb-2 text-[#2EADC5] "
-            >
-              Image, Video, Audio, or 3D Model
-            </label>
-            <h6 className="text-white py-2">
-              File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV,
-              OGG, GLB, GLTF. Max size: 100 MB
-            </h6>
-            <input
-              className="form-control
-    block
-    w-full
-    px-3
-    py-1.5
-    text-base
-    font-normal
-    text-gray-700
-    bg-transparent bg-clip-padding
-    border border-solid border-gray-300
-    rounded
-    transition
-    ease-in-out
-    m-0
-    focus:text-[#2EADC5] focus:bg-transparent focus:border-[#2EADC5] focus:outline-none"
-              type="file"
-              id="formFile"
-              multiple
-              onChange={onFileChange}
-            />
+            <div className="flex">
+              <div>
+                <label
+                  htmlFor="formFile"
+                  className="form-label inline-block mb-2 text-[#2EADC5] "
+                >
+                  Upload Image to be posted
+                </label>
+                <h6 className="text-white py-2">
+                  File types supported: JPG, PNG
+                </h6>
+                <input
+                  className="form-control block w-full px-3 py-1.5 text-base font-normal  text-gray-700 bg-transparent bg-clip-padding  border-solid border-gray-300 rounded transition ease-in-out m-0
+                      focus:text-[#2EADC5] focus:bg-transparent focus:border-[#2EADC5] focus:outline-none"
+                  type="file"
+                  id="formFile"
+                  multiple
+                  onChange={onFileChange}
+                />
+              </div>
+              <div
+                id="imagePreview"
+                className="w-full rounded-sm bg-slate-700 border-slate-400  "
+              >
+                {file ? (
+                  <img
+                    src={URL.createObjectURL(file[0])}
+                    className=" w-full h-[300px]"
+                  ></img>
+                ) : (
+                  <div className="mx-auto ">
+                    <p className="text-center my-16">No files selected</p>
+                  </div>
+                )}
+              </div>
+            </div>
 
             <label
               htmlFor="name"
@@ -165,7 +220,7 @@ function CreateHero() {
               Supply
             </label>
             <p className="text-white ">
-              The number of items that can be minted.No gas cost to you!{" "}
+              The number of items that can be minted. No gas cost to you!{" "}
             </p>
             <input
               type="text"
@@ -186,7 +241,7 @@ function CreateHero() {
                 className="inline-flex text-white bg-[#2EADC5] border-2 border-[#2EADC5] py-2 px-6 focus:outline-none hover:bg-transparent hover:border-[#2EADC5] rounded text-lg"
                 type="submit"
               >
-                Create
+                {loading ? "Loading" : "Create"}
               </button>
             </div>
           </form>

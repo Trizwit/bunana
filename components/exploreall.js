@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { details } from "../data/details";
-import { connect } from "@tableland/sdk";
+import Image from "next/image";
 
 function Exploreall() {
   const [data, setData] = useState(details);
+
   return (
     <section className="text-gray-600 body-font ">
       <div className="container  px-32 py-5 mx-auto flex flex-wrap">
@@ -42,10 +43,10 @@ function Exploreall() {
                   </a>
                   <div className="p-2 relative">
                     <h5 className="text-white text-2xl font-extrabold mb-2">
-                      Fancy Boy
+                      {dObj.title}
                     </h5>
                     <button className="absolute top-3 right-2 bg-[#152022] text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-32">
-                      0.25 ETH
+                      TIP
                     </button>
                     <p className="text-white text-base font-bold mb-4">
                       {dObj.sub}
@@ -111,7 +112,7 @@ function Exploreall() {
                     Fancy Boy
                   </h5>
                   <button className="absolute top-3 right-2 bg-[#152022] text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-32">
-                    0.25 ETH
+                    TIP
                   </button>
                   <p className="text-white text-base font-bold mb-4">
                     by Biker
@@ -145,7 +146,7 @@ function Exploreall() {
                     Fancy Boy
                   </h5>
                   <button className="absolute top-3 right-2 bg-[#152022] text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-32">
-                    0.25 ETH
+                    TIP
                   </button>
                   <p className="text-white text-base font-bold mb-4">
                     by Biker
@@ -179,7 +180,7 @@ function Exploreall() {
                     Fancy Boy
                   </h5>
                   <button className="absolute top-3 right-2 bg-[#152022] text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-32">
-                    0.25 ETH
+                    TIP
                   </button>
                   <p className="text-white text-base font-bold mb-4">
                     by Biker

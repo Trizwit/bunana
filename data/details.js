@@ -53,4 +53,10 @@ export const details = [
     sub: "Biker1",
     img: "nft9.svg",
   },
+  {
+    id: 10,
+    title: "Sholay",
+    sub: "Movie Poster",
+    img: "sholay.jpeg",
+  },
 ];
