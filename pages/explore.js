@@ -1,13 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import { useState } from 'react';
-import NavBar from '../components/navbar';
-import Footer from '../components/footer';
-import Explorehero from '../components/explorehero';
-import Link from 'next/link';
-import Exploreall from '../components/exploreall';
-
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { useState } from "react";
+import NavBar from "../components/navbar";
+import Footer from "../components/footer";
+import Explorehero from "../components/explorehero";
+import Link from "next/link";
+import Exploreall from "../components/exploreall";
 
 export default function Home() {
   const [navbar, setNavbar] = useState(false);
@@ -20,23 +19,18 @@ export default function Home() {
       </Head>
 
       {/* navbar start */}
-      <div > <NavBar/> </div>
+      <div>
+        {" "}
+        <NavBar />{" "}
+      </div>
       {/* nav bar end */}
 
-      <main >
-        <Explorehero/>
-        <Exploreall/>
-
-      
-
-
+      <main>
+        <Explorehero />
+        <Exploreall />
       </main>
 
-
-
-
-      <Footer/>
-   
+      {/* <Footer/> */}
     </div>
-  )
+  );
 }

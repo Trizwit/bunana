@@ -1,16 +1,15 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import { useState } from 'react';
-import NavBar from '../components/navbar';
-import Hero from '../components/hero';
-import Categ from '../components/categories';
-import Trending from '../components/trending';
-import Carousel from '../components/carousel';
-import Footer from '../components/footer';
-import Soicials from '../components/socials';
-import Link from 'next/link';
-
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { useState } from "react";
+import NavBar from "../components/navbar";
+import Hero from "../components/hero";
+import Categ from "../components/categories";
+import Trending from "../components/trending";
+import Carousel from "../components/carousel";
+import Footer from "../components/footer";
+import Socials from "../components/socials";
+import Link from "next/link";
 
 export default function Home() {
   const [navbar, setNavbar] = useState(false);
@@ -23,24 +22,22 @@ export default function Home() {
       </Head>
 
       {/* navbar start */}
-      <div > <NavBar/> </div>
+      <div>
+        {" "}
+        <NavBar />{" "}
+      </div>
       {/* nav bar end */}
 
-      <main >
-        <Hero/>
-        <Trending/>
-        <Carousel/>
-        <Categ/>
-      
-
-
+      <main>
+        <Hero />
+        <Trending />
+        <Carousel />
+        <Categ />
       </main>
 
+      <Socials />
 
-      <Soicials/>
-      
-      <Footer/>
-     
+      {/* <Footer /> */}
     </div>
-  )
+  );
 }

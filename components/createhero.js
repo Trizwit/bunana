@@ -1,19 +1,76 @@
 import { useState } from "react";
+import { Web3Storage } from "web3.storage";
 
-function CreatHero(){
-    const [file,setFile]= useState(null);
-    const [caption, useCaption]= useState("");
-    const [category, useCategory]= useState("");
-    
+function CreateHero() {
+  const [file, setFile] = useState();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("MUS");
+  const [supply, setSupply] = useState(1);
 
-    return <section className="text-gray-600 body-font">
-    <div className="container mx-auto flex flex-col px-5 py-24 justify-start items-center">
-    <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-[#2EADC5]">Create New Item</h1>
-      
-      <div className="w-full md:w-2/3 flex flex-col mb-16 items-left text-left">
-      <label for="formFile" className="form-label inline-block mb-2 text-[#2EADC5] ">Image, Video, Audio, or 3D Model</label>
-      <h6 className="text-white py-2">File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 100 MB</h6>
-    <input className="form-control
+  const onCategoryChange = (event) => {
+    const { value } = event.target.value;
+    setCategory(value);
+  };
+  const onNameChange = (event) => {
+    const { value } = event.target.value;
+    setName(value);
+  };
+  const onDescriptionChange = (event) => {
+    const { value } = event.target.value;
+    setDescription(value);
+  };
+  const onFileChange = (event) => {
+    const value = document.getElementById("formFile");
+    setFile(value.files);
+  };
+  const onSupplyChange = (event) => {
+    const { value } = event.target.value;
+    setSupply(value);
+  };
+
+  async function storeFiles(files) {
+    const client = new Web3Storage({
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGFCQUE3Yzg5NDczYjc0M2VjNDg1OTg0NmFiMzEzQzc0NENkMTIyN0MiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzAwNzI4MzMzMjIsIm5hbWUiOiJidW5hbmEifQ.NTn9Kqbjz9EdoNz0BB5WXtEcjlTKICBsGzZCw3wC75I",
+    });
+    console.log(files);
+    const cid = await client.put(files);
+    console.log("stored files with cid:", cid);
+    return cid;
+  }
+
+  async function createBunana(file) {
+    const contentId = await storeFiles(file);
+  }
+
+  return (
+    <section className="text-gray-600 body-font">
+      <div className="container mx-auto flex flex-col px-5 py-24 justify-start items-center">
+        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-[#2EADC5]">
+          Create New Item
+        </h1>
+
+        <div className="w-full md:w-2/3 flex flex-col mb-16 items-left text-left">
+          <form
+            className="flex flex-col"
+            onSubmit={(event) => {
+              event.preventDefault();
+              createBunana(file);
+            }}
+          >
+            <label
+              htmlFor="formFile"
+              className="form-label inline-block mb-2 text-[#2EADC5] "
+            >
+              Image, Video, Audio, or 3D Model
+            </label>
+            <h6 className="text-white py-2">
+              File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV,
+              OGG, GLB, GLTF. Max size: 100 MB
+            </h6>
+            <input
+              className="form-control
     block
     w-full
     px-3
@@ -27,66 +84,114 @@ function CreatHero(){
     transition
     ease-in-out
     m-0
-    focus:text-[#2EADC5] focus:bg-transparent focus:border-[#2EADC5] focus:outline-none" type="file" id="formFile"/>
-        
+    focus:text-[#2EADC5] focus:bg-transparent focus:border-[#2EADC5] focus:outline-none"
+              type="file"
+              id="formFile"
+              multiple
+              onChange={onFileChange}
+            />
 
-        <label for="name" className="form-label inline-block mb-2 text-[#2EADC5] pt-4">Name</label>
-        <input type="text" id="name" className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  " placeholder="Item name" required/>
+            <label
+              htmlFor="name"
+              className="form-label inline-block mb-2 text-[#2EADC5] pt-4"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  "
+              placeholder="Item name"
+              value={name}
+              onChange={onNameChange}
+              required
+            />
 
-        <label for="link" className="form-label inline-block mb-2 text-[#2EADC5] pt-4">External Link</label>
-        <p className="text-white ">Trizwit will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
-        <input type="text" id="link" className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  " placeholder="https://xyz.io/123" required/>
-        
-        <label for="descr" className="form-label inline-block mb-2 text-[#2EADC5] pt-4">Description</label>
-        <p className="text-white ">The description will be included on the item's detail page underneath its image. </p>
-        <input type="text" id="descr" className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  " placeholder="Provide a detailed description of your item" required/>
-        
-        <label for="coll" className="form-label inline-block mb-2 text-[#2EADC5] pt-4">Collection</label>
-        <p className="text-white ">The description will be included on the item's detail page underneath its image. </p>
-        <select id="col" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-[#2EADC5] dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white ">
-          <option selected>Choose a collection</option>
-          <option value="ART">Comedy</option>
-          <option value="SPT">Dance</option>
-           <option value="DOM">Music</option>
-           <option value="MUS">Lip Sync</option>
-          
-          </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
-        
-        <label for="supply" className="form-label inline-block mb-2 text-[#2EADC5] pt-4">Supply</label>
-        <p className="text-white ">The number of items that can be minted.No gas cost to you! </p>
-        <input type="text" id="descr" className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  " placeholder="1" required/>
-        
-        
-        <label for="block" className="form-label inline-block mb-2 text-[#2EADC5] pt-4">Blockchain</label>
+            <label
+              htmlFor="descr"
+              className="form-label inline-block mb-2 text-[#2EADC5] pt-4"
+            >
+              Description
+            </label>
+            <p className="text-white ">
+              The description will be included on the item's detail page
+              underneath its image.{" "}
+            </p>
+            <input
+              type="text"
+              id="descr"
+              className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  "
+              placeholder="Provide a detailed description of your item"
+              value={description}
+              onChange={onDescriptionChange}
+              required
+            />
 
-        <select id="col" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-[#2EADC5] dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white ">
-          <option selected>Ethereum</option>
-          <option value="ETH">Solana</option>
-          <option value="ARB">Arbitrum</option>
-           <option value="AVA">Avalanche</option>
-          <option value="PLG">Polygon</option>
-          </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
-         
+            <label
+              htmlFor="coll"
+              className="form-label inline-block mb-2 text-[#2EADC5] pt-4"
+            >
+              Collection
+            </label>
+            <p className="text-white ">
+              The description will be included on the item's detail page
+              underneath its image.{" "}
+            </p>
+            <select
+              id="col"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-[#2EADC5] dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white "
+              onChange={onCategoryChange}
+              value={category}
+            >
+              <option value="MUS">Music</option>
+              <option value="ART">Comedy</option>
+              <option value="DAN">Dance</option>
+              <option value="LIP">Lip Sync</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg
+                className="fill-current h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            </div>
 
+            <label
+              htmlFor="supply"
+              className="form-label inline-block mb-2 text-[#2EADC5] pt-4"
+            >
+              Supply
+            </label>
+            <p className="text-white ">
+              The number of items that can be minted.No gas cost to you!{" "}
+            </p>
+            <input
+              type="text"
+              id="supply"
+              className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  "
+              placeholder="1"
+              value={supply}
+              onChange={onSupplyChange}
+              required
+            />
 
-
-
-
-        <div className="flex w-full justify-center items-end my-4">
-          {/* <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-            <label for="hero-field" className="leading-7 text-sm text-gray-600">Placeholder</label>
+            <div className="flex w-full justify-center items-end my-4">
+              {/* <div className="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
+            <label htmlFor="hero-field" className="leading-7 text-sm text-gray-600">Placeholder</label>
             <input type="text" id="hero-field" name="hero-field" className="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
           </div> */}
-          <button className="inline-flex text-white bg-[#2EADC5] border-2 border-[#2EADC5] py-2 px-6 focus:outline-none hover:bg-transparent hover:border-[#2EADC5] rounded text-lg">Create</button>
-        </div>
-        {/* <p className="text-sm mt-2 text-gray-500 mb-8 w-full">Neutra shabby chic ramps, viral fixie.</p> */}
-        {/* <div className="flex">
+              <button
+                className="inline-flex text-white bg-[#2EADC5] border-2 border-[#2EADC5] py-2 px-6 focus:outline-none hover:bg-transparent hover:border-[#2EADC5] rounded text-lg"
+                type="submit"
+              >
+                Create
+              </button>
+            </div>
+          </form>
+          {/* <p className="text-sm mt-2 text-gray-500 mb-8 w-full">Neutra shabby chic ramps, viral fixie.</p> */}
+          {/* <div className="flex">
           <button className="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6 h-6" viewBox="0 0 512 512">
               <path d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z"></path>
@@ -107,9 +212,10 @@ function CreatHero(){
             </span>
           </button>
         </div> */}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  );
 }
 
-export default CreatHero;
+export default CreateHero;
