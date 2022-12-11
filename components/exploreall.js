@@ -87,7 +87,7 @@ function Exploreall() {
 
               {/* card end */}
 
-              {/* card10 start */}
+              {/* card10 star */}
               <div className="relative z-40 rounded-[32px] shadow-md shadow-[#2EADC5]/50 hover:shadow-[#2EADC5] bg-[#152022] max-w-sm md:w-58 max-h-1/6 hover:scale-105 transition duration-300 ease-in-out">
                 <a href="#!">
                   <div className="relative  ">
