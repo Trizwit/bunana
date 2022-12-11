@@ -26,7 +26,7 @@ export default function Home() {
       {/* nav bar end */}
 
       <main>
-        <Explorehero />
+        {/* <Explorehero /> */}
         <Exploreall />
       </main>
 
