@@ -80,10 +80,10 @@ function Exploreall() {
                           alt=""
                         /> */}
                       </div>
-                      <button className="absolute top-2 right-2 bg-[#152022] text-white p-2 rounded-[12px] hover:bg-transparent">
+                      <button className="absolute top-2 right-2 bg-transparent text-white p-2 rounded-[12px] hover:bg-transparent">
                         <img
                           className="flex justify-center w-10 h-10"
-                          src="heart1.svg"
+                          src="Logo.svg"
                           alt=""
                         />
                       </button>
@@ -93,12 +93,38 @@ function Exploreall() {
                     <h5 className="text-2xl font-extrabold mb-2">
                       {dObj.title}
                     </h5>
-                    <button className="absolute top-3 right-2 bg-[#152022] text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12">
-                      TIP
+                    <button className="absolute top-12 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                      <img 
+                      className="flex justify-center w-8 h-8"
+                      src="tipicon.png"
+                      alt="TIP"
+                      />
                     </button>
-                    <p className="text-white text-base font-bold mb-4">
+                    {/* <p className="text-white text-base font-bold mb-4">
                       {dObj.sub}
-                    </p>
+                    </p> */}
+                    <button className="absolute top-12 left-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                      <img 
+                      className="flex justify-center w-8 h-8"
+                      src="comment.png"
+                      alt="Comment"
+                      />
+                    </button>
+                    <button className="absolute top-12 left-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                      <img 
+                      className="flex justify-center w-8 h-8"
+                      src="share.png"
+                      alt="Comment"
+                      />
+                    </button>
+
+                    <button className="absolute top-12 right-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                      <img 
+                      className="flex justify-center w-8 h-8"
+                      src="heart1.svg"
+                      alt="Comment"
+                      />
+                    </button>
                   </div>
                 </div>
               ))}
