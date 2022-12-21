@@ -1,3 +1,6 @@
+
+
+
 export const details = [
   {
     id: 1,
@@ -61,3 +64,7 @@ export const details = [
     img: "https://youtube.com/shorts/cQlHDPSD0jg?feature=share",
   },
 ];
+
+
+
+
