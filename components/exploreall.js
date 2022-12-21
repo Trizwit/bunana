@@ -6,8 +6,6 @@ import { useCreateAsset, useLivepeerProvider, Player } from "@livepeer/react";
 function Exploreall() {
   const [update, setupdate] = useState([]);
 
-  const playbackId =
-    "5013zil3ezqjhxbm";
   const livepeerProvider = useLivepeerProvider();
 
   useEffect(() => {
@@ -19,6 +17,7 @@ function Exploreall() {
         setupdate(temp);
       });
   }, []);
+
   return (
     <section className="text-gray-600 body-font ">
       <div className="container  px-32 py-5 mx-auto flex flex-row min-h-screen justify-center items-center">
@@ -105,8 +104,9 @@ function Exploreall() {
                       </button>
                           <div className="container mt-4 pb-2  w-80 h-96 overflow-hidden rounded-[24px] ">
                           <Player
-                            playbackId={playbackId}
-                            showPipButton
+                            playbackId={dObj.img}
+                            autoPlay={true}
+                            muted
                             showTitle={false}
                             aspectRatio="4to6"
                             width="30%"
