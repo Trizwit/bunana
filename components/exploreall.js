@@ -90,23 +90,31 @@ function Exploreall() {
                 >
                   <a href="#!">
                     <div className="relative">
-                      <div className="h-72 bg-transparent rounded-t-[32px] ">
+                      <div className="h-96 bg-transparent rounded-t-[32px] ">
                         <div className="">
                           <h2 className="text-2xl text-[#2BA3BA] font-bold pt-2 pl-2 animate-pulse">
                             Bunana
                           </h2>
                           {/* <ReactPlayer width="100%" url={dObj.img} /> */}
-
+                          <button className="absolute top-2 right-2 bg-transparent text-white p-2 rounded-[12px] hover:bg-transparent">
+                        <img
+                          className="flex justify-center w-10 h-10"
+                          src="Logo.svg"
+                          alt=""
+                        />
+                      </button>
+                          <div className="container mt-4 pb-2  w-80 h-96 overflow-hidden rounded-[24px] ">
                           <Player
                             playbackId={playbackId}
                             showPipButton
                             showTitle={false}
-                            aspectRatio="1to1"
-                            width="50%"
+                            aspectRatio="4to6"
+                            width="30%"
                             controls={{
                             autohide: 3000,
                             }}
                           />
+                          </div>
 
 
                         </div>
@@ -116,13 +124,7 @@ function Exploreall() {
                           alt=""
                         /> */}
                       </div>
-                      <button className="absolute top-2 right-2 bg-transparent text-white p-2 rounded-[12px] hover:bg-transparent">
-                        <img
-                          className="flex justify-center w-10 h-10"
-                          src="Logo.svg"
-                          alt=""
-                        />
-                      </button>
+                     
                     </div>
                   </a>
                   <div className=" text-white p-2 relative ">
