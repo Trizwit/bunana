@@ -21,7 +21,7 @@ export default function Home() {
       {/* navbar start */}
       <div>
         {" "}
-        <NavBar />{" "}
+        {/* <NavBar />{" "} */}
       </div>
       {/* nav bar end */}
 
