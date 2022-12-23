@@ -2,6 +2,7 @@ import Router from "next/router";
 import Web3Modal from "web3modal";
 import { providers, Contract, utils } from "ethers";
 import { CONTRACT_PARENT_ADDRESS, abiContract } from "../constants";
+import { CHILD_PARENT_ADDRESS, abiChild } from "../constants";
 
 import Head from "next/head";
 import Image from "next/image";
@@ -45,9 +46,6 @@ function CreateHero() {
       // When used for the first time, it prompts the user to connect their wallet
       await getProviderOrSigner();
       setWalletConnected(true);
-
-      checkIfAddressInWhitelist();
-      getNumberOfWhitelisted();
     } catch (err) {
       console.error(err);
     }
@@ -66,10 +64,74 @@ function CreateHero() {
     }
   }, [walletConnected]);
 
+
+  const tempread= async () => {
+    try {
+    
+      const signer = await getProviderOrSigner(true);
+      const parentContract = new Contract(
+        CONTRACT_PARENT_ADDRESS,
+        abiContract,
+        signer
+      );
+     const temp = await parentContract._factoryTableId();
+      console.log("table id");
+      console.log(temp);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const createcollection=async()=>{
+
+    try {
+    
+      const signer = await getProviderOrSigner(true);
+      const parentContract = new Contract(
+        CONTRACT_PARENT_ADDRESS,
+        abiContract,
+        signer
+      );
+     const temp = await parentContract.createcollection("2992z2ebix1tbuk4","nft1","WE","NICE VIDEO","https://mir-s3-cdn-cf.behance.net/project_modules/disp/96be2232163929.567197ac6fb64.png");
+      console.log("RETURN");
+      console.log(temp);
+    } catch (err) {
+      console.error(err);
+    }
+
+
+  };
+
+  const mint=async()=>{
+
+    try {
+    
+      const signer = await getProviderOrSigner(true);
+      const childContract = new Contract(
+        CHILD_PARENT_ADDRESS,
+        abiChild,
+        signer
+      );
+     const temp = await childContract.safeMint({
+      // value signifies the cost of one crypto dev which is "0.01" eth.
+      // We are parsing `0.01` string to ether using the utils library from ethers.js
+      value: utils.parseEther("0.00015"),
+    });
+      console.log("RETURN");
+      console.log(temp);
+    } catch (err) {
+      console.error(err);
+    }
+
+
+  };
+
+
+
+
   //web3///////////////////
   const livepeerProvider = useLivepeerProvider();
   const [video, setVideo] = useState(null);
-  // const[lastassetid,setLastassetid]=useState("");
   var lastassetid = "";
   const {
     mutate: createAsset,
@@ -104,6 +166,7 @@ function CreateHero() {
       console.log("completed video upload");
     }
   }, [status]);
+  
   return (
     <>
       <input
@@ -123,6 +186,13 @@ function CreateHero() {
         }}
       >
         Create Asset
+       
+      </button >
+    
+      <button  onClick={() => {
+         mint();
+        }}>
+                mint temp
       </button>
       {assets?.map((asset) => (
         <div key={asset.id}>
