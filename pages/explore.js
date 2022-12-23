@@ -25,8 +25,8 @@ export default function Home() {
       </div>
       {/* nav bar end */}
 
-      <main>
-        <Explorehero />
+      <main className="overflow-hidden">
+        {/* <Explorehero /> */}
         <Exploreall />
       </main>
 
