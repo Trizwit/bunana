@@ -12,6 +12,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { data } from "autoprefixer";
 
 function CreateHero() {
+  console.log("rendering");
   const [walletConnected, setWalletConnected] = useState(false);
   // loading is set to true when we are waiting for a transaction to get mined
   const [loading, setLoading] = useState(false);
@@ -21,10 +22,8 @@ function CreateHero() {
   const [videoFile, setVideoFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(null);
   const fileInput = useRef(null);
- // const [name, setName] = useState("");
- // const [description, setDescription] = useState("");
-  const description=useRef("");
-  const name=useRef("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState("MUS");
   const [supply, setSupply] = useState(1);
 
@@ -119,13 +118,11 @@ function CreateHero() {
 
   const onNameChange = (event) => {
     const { value } = event.target.value;
-    name.current=value;
-    // setName(value);
+    setName(value);
   };
   const onDescriptionChange = (event) => {
     const { value } = event.target.value;
-    description.current=value;
-    // setDescription(value);
+    setDescription(value);
   };
 
   const uploadVideo = async () => {
@@ -146,9 +143,9 @@ function CreateHero() {
       console.log("completed video upload asset id:");
       console.log(lastassetid);
       if (lastassetid) {
-        console.log(description.current);
-        console.log(name.current);
-        createcollection(description.current, name.current, "CI");
+        console.log(description);
+        console.log(name)
+        createcollection(description, name, "CI");
       }
     }
   }, [status]);
@@ -166,7 +163,7 @@ function CreateHero() {
             <form
               className="flex flex-col"
               onSubmit={(event) => {
-                // event.preventDefault();
+                event.preventDefault();
                 // createBunana(previewUrl);
               }}
             >
@@ -236,7 +233,7 @@ function CreateHero() {
                 id="name"
                 className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  "
                 placeholder="Item name"
-                value={name.current}
+                value={name}
                 onChange={onNameChange}
                 required
               />
@@ -256,7 +253,7 @@ function CreateHero() {
                 id="descr"
                 className="bg-transparent border border-[#2EADC5] text-white text-sm rounded-lg  focus:border-[#2EADC5] block w-full p-2.5  "
                 placeholder="Provide a detailed description of your item"
-                value={description.current}
+                value={description}
                 onChange={onDescriptionChange}
                 required
               />
@@ -318,7 +315,7 @@ function CreateHero() {
           </div> */}
                 <button
                   className="inline-flex text-white bg-[#2EADC5] border-2 border-[#2EADC5] py-2 px-6 focus:outline-none hover:bg-transparent hover:border-[#2EADC5] rounded text-lg"
-                  type="submit"
+                  disabled={status === "loading" || !createAsset}
                   onClick={() => {
                     handleSubmit();
                   }}
