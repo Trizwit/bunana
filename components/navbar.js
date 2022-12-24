@@ -1,6 +1,6 @@
 import { use, useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Exploreall from "./exploreall";
+
 import { useRouter } from "next/router";
 import Web3Modal from "web3modal";
 import { providers, Contract } from "ethers";
@@ -118,7 +118,7 @@ export default function NavBar() {
                 <a href="#">Stats</a>
               </li>
               <li className="text-white hover:text-[#2BA3BA]">
-                <a href="#">Resources</a>
+                <Link href="mintpg">Mint</Link>
               </li>
               <li className="text-white hover:text-[#2BA3BA]">
                 <Link href="create">Create</Link>
