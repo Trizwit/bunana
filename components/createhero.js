@@ -9,6 +9,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useCreateAsset, useLivepeerProvider, Player } from "@livepeer/react";
 import React, { useState, useRef, useEffect } from "react";
+import { data } from "autoprefixer";
 
 function CreateHero() {
   const [walletConnected, setWalletConnected] = useState(false);
@@ -64,17 +65,15 @@ function CreateHero() {
     }
   }, [walletConnected]);
 
-
-  const tempread= async () => {
+  const tempread = async () => {
     try {
-    
       const signer = await getProviderOrSigner(true);
       const parentContract = new Contract(
         CONTRACT_PARENT_ADDRESS,
         abiContract,
         signer
       );
-     const temp = await parentContract._factoryTableId();
+      const temp = await parentContract._factoryTableId();
       console.log("table id");
       console.log(temp);
     } catch (err) {
@@ -82,52 +81,47 @@ function CreateHero() {
     }
   };
 
-  const createcollection=async()=>{
-
+  const createcollection = async (Description,Nftname,Nftsymbol) => {
     try {
-    
       const signer = await getProviderOrSigner(true);
       const parentContract = new Contract(
         CONTRACT_PARENT_ADDRESS,
         abiContract,
         signer
       );
-     const temp = await parentContract.createcollection("2992z2ebix1tbuk4","nft1","WE","NICE VIDEO","https://mir-s3-cdn-cf.behance.net/project_modules/disp/96be2232163929.567197ac6fb64.png");
+      const temp = await parentContract.createcollection(
+        lastassetid,
+        Nftname,
+        Nftsymbol,
+        Description,
+        "https://mir-s3-cdn-cf.behance.net/project_modules/disp/96be2232163929.567197ac6fb64.png"
+      );
       console.log("RETURN");
       console.log(temp);
     } catch (err) {
       console.error(err);
     }
-
-
   };
 
-  const mint=async()=>{
-
+  const mint = async () => {
     try {
-    
       const signer = await getProviderOrSigner(true);
       const childContract = new Contract(
         CHILD_PARENT_ADDRESS,
         abiChild,
         signer
       );
-     const temp = await childContract.safeMint({
-      // value signifies the cost of one crypto dev which is "0.01" eth.
-      // We are parsing `0.01` string to ether using the utils library from ethers.js
-      value: utils.parseEther("0.00015"),
-    });
+      const temp = await childContract.safeMint({
+        // value signifies the cost of one crypto dev which is "0.01" eth.
+        // We are parsing `0.01` string to ether using the utils library from ethers.js
+        value: utils.parseEther("0.00015"),
+      });
       console.log("RETURN");
       console.log(temp);
     } catch (err) {
       console.error(err);
     }
-
-
   };
-
-
-
 
   //web3///////////////////
   const livepeerProvider = useLivepeerProvider();
@@ -163,10 +157,14 @@ function CreateHero() {
     console.log("status");
     console.log(status);
     if (status == "success") {
-      console.log("completed video upload");
+      console.log("completed video upload asset id:");
+      console.log(lastassetid);
+      if(lastassetid){
+        createcollection("satisfying video","nftname","nftsymbol");
+      }
     }
   }, [status]);
-  
+
   return (
     <>
       <input
@@ -186,13 +184,13 @@ function CreateHero() {
         }}
       >
         Create Asset
-       
-      </button >
-    
-      <button  onClick={() => {
-         mint();
-        }}>
-                mint temp
+      </button>
+      <button
+        onClick={() => {
+          tempread();
+        }}
+      >
+        mint temp
       </button>
       {assets?.map((asset) => (
         <div key={asset.id}>
@@ -201,6 +199,7 @@ function CreateHero() {
             <div>Playbackid:{asset?.playbackId}</div>
             <div>Playback URL: {asset?.playbackUrl}</div>
             <div>IPFS CID: {asset?.storage?.ipfs?.cid ?? "None"}</div>
+            {(lastassetid = asset?.playbackId)}
           </div>
         </div>
       ))}
@@ -213,6 +212,8 @@ function CreateHero() {
 }
 
 export default CreateHero;
+
+
 
 // function CreateHero() {
 //   const [file, setFile] = useState();

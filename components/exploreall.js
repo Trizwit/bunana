@@ -10,7 +10,7 @@ function Exploreall() {
 
   useEffect(() => {
     console.log("lets start");
-    fetch("https://api.npoint.io/c23b6f72ea47792deaa3")
+    fetch("https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20bunana_5_1287")
       .then((response) => response.text())
       .then((data) => {
         var temp = JSON.parse(data);
@@ -102,9 +102,9 @@ function Exploreall() {
                           alt=""
                         />
                       </button>
-                          <div className="container mt-4   w-[216px] h-[384px] overflow-hidden rounded-[24px] ">
+                          <div className="container mt-4 pb-2  w-80 h-96 overflow-hidden rounded-[24px] ">
                           <Player
-                            playbackId={dObj.img}
+                            playbackId={dObj.cid}
                             autoPlay={true}
                             muted
                             showTitle={false}
@@ -129,7 +129,7 @@ function Exploreall() {
                   </a>
                   <div className=" text-white p-2 relative ">
                     <h5 className="text-2xl font-extrabold mb-2">Title</h5>
-                    <button className="absolute top-16 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button className="absolute top-12 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="tipicon.png"
@@ -137,14 +137,14 @@ function Exploreall() {
                       />
                     </button>
 
-                    <button className="absolute top-16 left-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button className="absolute top-12 left-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="comment.png"
                         alt="Comment"
                       />
                     </button>
-                    <button className="absolute top-16 left-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button className="absolute top-12 left-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="share.png"
@@ -152,7 +152,7 @@ function Exploreall() {
                       />
                     </button>
 
-                    <button className="absolute top-16 right-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button className="absolute top-12 right-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="heart1.svg"
