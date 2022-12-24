@@ -102,7 +102,7 @@ function Exploreall() {
                           alt=""
                         />
                       </button>
-                          <div className="container mt-4 pb-2  w-80 h-96 overflow-hidden rounded-[24px] ">
+                          <div className="container mt-4   w-80 h-96 overflow-hidden rounded-[24px] ">
                           <Player
                             playbackId={dObj.cid}
                             autoPlay={true}
@@ -129,35 +129,39 @@ function Exploreall() {
                   </a>
                   <div className=" text-white p-2 relative ">
                     <h5 className="text-2xl font-extrabold mb-2">Title</h5>
-                    <button className="absolute top-12 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button className="absolute top-16 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="tipicon.png"
                         alt="TIP"
                       />
+                       <h6 className="text-lg text-white pt-2">10</h6>
                     </button>
 
-                    <button className="absolute top-12 left-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button className="absolute top-16 left-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="comment.png"
                         alt="Comment"
                       />
+                       <h6 className="text-lg text-white pt-2">12</h6>
                     </button>
-                    <button className="absolute top-12 left-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button className="absolute top-16 left-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="share.png"
-                        alt="Comment"
+                        alt="share"
                       />
+                       
                     </button>
 
-                    <button className="absolute top-12 right-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button className="absolute top-16 right-20 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="heart1.svg"
-                        alt="Comment"
+                        alt="like"
                       />
+                      <h6 className="text-lg text-white pt-2">12k</h6>
                     </button>
                   </div>
                 </div>
