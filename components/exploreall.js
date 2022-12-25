@@ -118,11 +118,7 @@ function Exploreall() {
 
 
                         </div>
-                        {/* <img
-                          className="object-cover h-72 w-full rounded-t-[32px] hover:scale-105 transition duration-300 ease-in-out"
-                          src={dObj.img}
-                          alt=""
-                        /> */}
+                        
                       </div>
                      
                     </div>
@@ -212,6 +208,14 @@ function Exploreall() {
               {/* card end */}
             </div>
           </div>
+          <button className="fixed right-64 top-80  bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                      <img
+                        className="flex justify-center w-8 h-8"
+                        src="heart1.svg"
+                        alt="like"
+                      />
+                      <h6 className="text-lg text-white pt-2">12k</h6>
+                    </button>
         </div>
       </div>
     </section>
