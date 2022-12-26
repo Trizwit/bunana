@@ -128,7 +128,7 @@ export default function NavBar() {
           <div className="container mx-auto  h-12  px-8 py-2 ">
             <input
               className="mb-4 border-2 inline py-2 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-[#1E545D] focus:ring-gray-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search arts, music..."
+              placeholder="search arts,music,.."
               id="name"
               name="name"
               type="search"
@@ -140,7 +140,7 @@ export default function NavBar() {
               className=" bg-[#2BA3BA] h-8 px-2 pb-1 text-white rounded-[6px] hover:bg-transparent hover:text-[#2BA3BA] hover:shadow-xl"
               onClick={connectWallet}
             >
-              Connect Wallet
+              Connect
             </button>
           </div>
           <div className="basis-1/6   ml-32  h-12 ">

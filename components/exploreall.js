@@ -5,9 +5,18 @@ import { useCreateAsset, useLivepeerProvider, Player } from "@livepeer/react";
 import Web3Modal from "web3modal";
 import { providers, Contract, utils } from "ethers";
 import { CHILD_PARENT_ADDRESS, abiChild } from "../constants";
-import Likebox from "./likebox";
+import LoveBox from "./lovebox";
+
+
+
 
 function Exploreall() {
+  let value=null;
+  let setValue=null;
+  const onChildMount=(dataFromChild)=>{
+  value=dataFromChild[0];
+  setValue=dataFromChild[1];
+  };
   const [walletConnected, setWalletConnected] = useState(false);
   // loading is set to true when we are waiting for a transaction to get mined
   const [loading, setLoading] = useState(false);
@@ -72,6 +81,23 @@ function Exploreall() {
       console.error(err);
     }
   };
+  const tipplus = async (currentchildaddress) => {
+    try {
+      const signer = await getProviderOrSigner(true);
+      const childContract = new Contract(currentchildaddress, abiChild, signer);
+      const temp = await childContract.tip({
+        // value signifies the cost of one crypto dev which is "0.01" eth.
+        // We are parsing `0.01` string to ether using the utils library from ethers.js
+        value: utils.parseEther("0.000000001"),
+      });
+      console.log("RETURN");
+      console.log(temp);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
 
   const [update, setupdate] = useState([]);
   const [currchilddata, setCurrentchildata] = useState([]);
@@ -101,6 +127,7 @@ function Exploreall() {
         //console.log(temp[0].likes)
         try {
           currentchildlikes.current = temp[0].likes;
+          setValue(currentchildlikes.current);
           console.log(currentchildlikes.current);
         } catch (err) {
           console.log(err);
@@ -202,13 +229,14 @@ function Exploreall() {
                               // playbackId={dObj.cid}
                               playbackId={"9f1bawwdh7jbilh5"}
                               autoPlay={true}
-                              muted
+                              muted={true}
+                              loop
                               showTitle={false}
                               aspectRatio="4to6"
                               width="30%"
                               refetchPlaybackInfoInterval={8000}
                               controls={{
-                                autohide: 3000,
+                                autohide: 5000,
                               }}
                             />
                           </div>
@@ -223,11 +251,12 @@ function Exploreall() {
                   </a>
                   <div className=" text-white p-2 relative ">
                     <h5 className="text-2xl font-extrabold mb-2">Title</h5>
-                    <button className="absolute top-12 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button   onClick={()=>{tipplus(dObj.address)}} className="absolute top-12 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="tipicon.png"
                         alt="TIP"
+                       
                       />
                     </button>
 
@@ -305,7 +334,7 @@ function Exploreall() {
               {/* card end */}
             </div>
           </div>
-        <Likebox mylikes={currentchildlikes.current}/>
+        <LoveBox onMount={onChildMount}/>
         </div>
       </div>
     </section>
