@@ -88,7 +88,7 @@ function Exploreall() {
       const temp = await childContract.tip({
         // value signifies the cost of one crypto dev which is "0.01" eth.
         // We are parsing `0.01` string to ether using the utils library from ethers.js
-        value: utils.parseEther("0.000000001"),
+        value: utils.parseEther("0.000000002"),
       });
       console.log("RETURN");
       console.log(temp);
@@ -251,11 +251,14 @@ function Exploreall() {
                   </a>
                   <div className=" text-white p-2 relative ">
                     <h5 className="text-2xl font-extrabold mb-2">Title</h5>
-                    <button   onClick={()=>{tipplus(dObj.address)}} className="absolute top-12 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
+                    <button  className="absolute top-12 right-2 bg-transparent text-white p-2 rounded-[12px] border-2 border-[#2EADC5]/50 w-12 h-12">
                       <img
                         className="flex justify-center w-8 h-8"
                         src="tipicon.png"
                         alt="TIP"
+                        onClick={()=>{
+                          tipplus(dObj.address);
+                        }} 
                        
                       />
                     </button>
