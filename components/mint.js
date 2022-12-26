@@ -152,7 +152,7 @@ function Exploreall() {
                       0.25 ETH
                     </button>
                     <p className="text-white text-base font-bold mb-4">
-                      by Biker
+                      {/* by Biker */}
                     </p>
                   </div>
                 </div>
