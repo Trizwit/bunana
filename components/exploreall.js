@@ -5,11 +5,9 @@ import { useCreateAsset, useLivepeerProvider, Player } from "@livepeer/react";
 import Web3Modal from "web3modal";
 import { providers, Contract, utils } from "ethers";
 import { CHILD_PARENT_ADDRESS, abiChild } from "../constants";
-
+import Likebox from "./likebox";
 
 function Exploreall() {
-
-
   const [walletConnected, setWalletConnected] = useState(false);
   // loading is set to true when we are waiting for a transaction to get mined
   const [loading, setLoading] = useState(false);
@@ -35,9 +33,6 @@ function Exploreall() {
     }
     return web3Provider;
   };
-
-
-
 
   /*
     connectWallet: Connects the MetaMask wallet
@@ -67,24 +62,16 @@ function Exploreall() {
   }, [walletConnected]);
 
   const likeplus = async (currentchildaddress) => {
-
     try {
       const signer = await getProviderOrSigner(true);
-      const childContract = new Contract(
-        currentchildaddress,
-        abiChild,
-        signer
-      );
-      const temp = await childContract.updateParam("0",1);
+      const childContract = new Contract(currentchildaddress, abiChild, signer);
+      const temp = await childContract.updateParam("0", 1);
       console.log("RETURN");
       console.log(temp);
     } catch (err) {
       console.error(err);
     }
   };
-
-
-
 
   const [update, setupdate] = useState([]);
   const [currchilddata, setCurrentchildata] = useState([]);
@@ -109,12 +96,12 @@ function Exploreall() {
     fetch(url)
       .then((response) => response.text())
       .then((data) => {
-        var temp = JSON.parse(data);
-        setCurrentchildata(temp);
-
+        const temp = JSON.parse(data);
+        //setCurrentchildata(temp);
+        //console.log(temp[0].likes)
         try {
-          currentchildlikes.current = currchilddata[0].likes;
-          console.log(currchilddata[0].likes);
+          currentchildlikes.current = temp[0].likes;
+          console.log(currentchildlikes.current);
         } catch (err) {
           console.log(err);
         }
@@ -194,9 +181,8 @@ function Exploreall() {
                     <div className="relative">
                       <div className="h-96 bg-transparent rounded-t-[32px] ">
                         <div
-                          onMouseOver={() => {
-                          
-                            // fetchchilddata(dObj.tableid);
+                          onMouseEnter={() => {
+                            fetchchilddata(dObj.tableid);
                           }}
                           className=""
                         >
@@ -211,10 +197,10 @@ function Exploreall() {
                               alt=""
                             />
                           </button>
-                          <div   className="container mt-4 pb-2  w-80 h-96 overflow-hidden rounded-[24px] ">
+                          <div className="container mt-4 pb-2  w-80 h-96 overflow-hidden rounded-[24px] ">
                             <Player
-                              
-                              playbackId={dObj.cid}
+                              // playbackId={dObj.cid}
+                              playbackId={"9f1bawwdh7jbilh5"}
                               autoPlay={true}
                               muted
                               showTitle={false}
@@ -265,9 +251,10 @@ function Exploreall() {
                         className="flex justify-center w-8 h-8"
                         src="heart1.svg"
                         alt="Comment"
-                        onClick={()=>{likeplus(dObj.address)}}
+                        onClick={() => {
+                          likeplus(dObj.address);
+                        }}
                       />
-                      {currentchildlikes.current}
                     </button>
                   </div>
                 </div>
@@ -318,6 +305,7 @@ function Exploreall() {
               {/* card end */}
             </div>
           </div>
+        <Likebox mylikes={currentchildlikes.current}/>
         </div>
       </div>
     </section>
