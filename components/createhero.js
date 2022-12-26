@@ -10,6 +10,7 @@ import styles from "../styles/Home.module.css";
 import { useCreateAsset, useLivepeerProvider, Player } from "@livepeer/react";
 import React, { useState, useRef, useEffect } from "react";
 import { data } from "autoprefixer";
+import { Description } from "@ethersproject/properties";
 
 function CreateHero() {
   console.log("rendering");
@@ -117,12 +118,12 @@ function CreateHero() {
 
 
   const onNameChange = (event) => {
-    const { value } = event.target.value;
-    setName(value);
+    setName( event.target.value);
+    console.log(name);
   };
   const onDescriptionChange = (event) => {
-    const { value } = event.target.value;
-    setDescription(value);
+    setDescription( event.target.value);
+    console.log(description);
   };
 
   const uploadVideo = async () => {
