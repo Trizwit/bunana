@@ -226,8 +226,8 @@ function Exploreall() {
                           </button>
                           <div className="container mt-4 pb-2  w-80 h-96 overflow-hidden rounded-[24px] ">
                             <Player
-                              // playbackId={dObj.cid}
-                              playbackId={"9f1bawwdh7jbilh5"}
+                              playbackId={dObj.cid}
+                              //playbackId={"9f1bawwdh7jbilh5"}
                               autoPlay={true}
                               muted={true}
                               loop
