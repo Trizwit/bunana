@@ -107,7 +107,7 @@ function Exploreall() {
   useEffect(() => {
     console.log("lets start");
     fetch(
-      "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20bunana_5_1287"
+      "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20bunana_5_1304"
     )
       .then((response) => response.text())
       .then((data) => {
@@ -225,10 +225,11 @@ function Exploreall() {
                             />
                           </button>
                           <div className="container mt-4 pb-2  w-80 h-96 overflow-hidden rounded-[24px] ">
+                            
                             <Player
+                           
                               playbackId={dObj.cid}
-                              //playbackId={"9f1bawwdh7jbilh5"}
-                              autoPlay={true}
+                               autoPlay={false}
                               muted={true}
                               loop
                               showTitle={false}

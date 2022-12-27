@@ -3,7 +3,7 @@ import { createReactClient, studioProvider,LivepeerConfig } from '@livepeer/reac
 
 
 const client = createReactClient({
-  provider: studioProvider({ apiKey: '22d7a2a1-79b0-4d1d-a547-7924a8522dd2' }),
+  provider: studioProvider({ apiKey: 'c2e0b46b-fbb2-4e1e-8228-316d92987d15' }),
 });
 
 

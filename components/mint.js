@@ -87,18 +87,10 @@ function Exploreall() {
   };
 
 
-
-
-
-
-
-
-
-
   const [update, setupdate] = useState([]);
   useEffect(() => {
     console.log("lets start");
-    fetch("https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20bunana_5_1287")
+    fetch("https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20bunana_5_1304")
       .then((response) => response.text())
       .then((data) => {
         var temp = JSON.parse(data);
@@ -130,12 +122,12 @@ function Exploreall() {
                             playbackId={dObj.cid}
                             autoPlay={true}
                             loop
-                            muted
+                            muted={true}
                             showTitle={false}
                             aspectRatio="4to6"
                             width="30%"
                             controls={{
-                            autohide:50,
+                            autohide:10,
                             }
                           }
                           />
